@@ -58,7 +58,9 @@ class _SignUpPageState extends State<SignUpPage> {
                 isObscureText: true,
               ),
               const SizedBox(height: 20),
-              const AuthGradientButton(),
+              const AuthGradientButton(
+                buttonText: 'Sign Up',
+              ),
               const SizedBox(height: 20),
               RichText(
                 text: TextSpan(
@@ -66,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   style: Theme.of(context).textTheme.titleMedium,
                   children: [
                     TextSpan(
-                      text: 'Sign Up',
+                      text: 'Sign In',
                       style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: AppPallete.gradient2,
                         fontWeight: FontWeight.bold,
