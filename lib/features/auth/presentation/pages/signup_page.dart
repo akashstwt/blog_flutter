@@ -5,6 +5,9 @@ import 'package:blog_app/features/auth/presentation/widgets/auth_gradient_button
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatefulWidget {
+  static route() => MaterialPageRoute(
+    builder: (context) => const LoginPage(),
+  );
   const SignUpPage ({super.key});
 
   @override
@@ -67,9 +70,7 @@ class _SignUpPageState extends State<SignUpPage> {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
+                    LoginPage.route(),
                   );
                 },
                 child: RichText(
