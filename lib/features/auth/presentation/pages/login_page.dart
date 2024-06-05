@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
   static route() => MaterialPageRoute(
-    builder: (context) => const SignUpPage(),
+    builder: (context) => const LoginPage(),
   );
   const LoginPage ({super.key});
 
