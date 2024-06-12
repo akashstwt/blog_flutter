@@ -30,8 +30,19 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String name,
     required String email,
     required String password,
-  }) {
-    // TODO: implement signupWithEmailPasswoed
-    throw UnimplementedError();
+  }) async {
+    try {
+      final response = await supabaseClient.auth.signUp(
+        password: password,
+        email: email,
+        data: {
+          'name': name,
+        },
+      );
+      if (response.user == null) {
+        throw '';
+      }
+      return response.user!.id;
+    } catch (e) {}
   }
 }
