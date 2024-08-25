@@ -20,34 +20,35 @@ Future<void> initDependencies() async {
 }
 
 void _initAuth() {
-  serviceLocater.registerFactory<AuthRemoteDataSource>(
-    () => AuthRemoteDataSourceImpl(
-      serviceLocater(),
-    ),
-  );
-
-  serviceLocater.registerFactory<AuthRepository>(
-    () => AuthRepositoryImpl(
-      serviceLocater(),
-    ),
-  );
-
-  serviceLocater.registerFactory(
-    () => UserSignUp(
-      serviceLocater(),
-    ),
-  );
-
-  serviceLocater.registerFactory(
-    () => UserLogIn(
-      serviceLocater(),
-    ),
-  );
-
-  serviceLocater.registerLazySingleton(
-    () => AuthBloc(
-      userSignUp: serviceLocater(),
-      userLogIn: serviceLocater(),
-    ),
-  );
+  // Datasource
+  serviceLocater
+    ..registerFactory<AuthRemoteDataSource>(
+      () => AuthRemoteDataSourceImpl(
+        serviceLocater(),
+      ),
+    )
+    // Repository
+    ..registerFactory<AuthRepository>(
+      () => AuthRepositoryImpl(
+        serviceLocater(),
+      ),
+    )
+    // Usecases
+    ..registerFactory(
+      () => UserSignUp(
+        serviceLocater(),
+      ),
+    )
+    ..registerFactory(
+      () => UserLogIn(
+        serviceLocater(),
+      ),
+    )
+    // Bloc
+    ..registerLazySingleton(
+      () => AuthBloc(
+        userSignUp: serviceLocater(),
+        userLogIn: serviceLocater(),
+      ),
+    );
 }
