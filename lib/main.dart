@@ -46,7 +46,14 @@ class _MyAppState extends State<MyApp> {
         selector: (state) {
           return state is AppUserLoggedIn;
         },
-        builder: (context, state) {
+        builder: (context, isLoggedIn) {
+          if (isLoggedIn) {
+            return const Scaffold(
+              body: Center(
+                child: Text('Logged in'),
+              ),
+            );
+          }
           return const LogInPage();
         },
       ),
