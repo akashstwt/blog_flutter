@@ -1,4 +1,6 @@
+import 'dart:io';
 import 'package:blog_app/core/theme/app_pallete.dart';
+import 'package:blog_app/core/utils/pick_image.dart';
 import 'package:blog_app/features/auth/blog/presentation/widgets/blog_editor.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,16 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
   final titileController = TextEditingController();
   final contentController = TextEditingController();
   List<String> selectedTopics = [];
+  File? image;
+
+  void selectImage() async {
+    final pickedImage = await pickImage(context);
+    if (pickedImage != null) {
+      setState(() {
+        image = pickedImage;
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -41,30 +53,35 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              DottedBorder(
-                color: AppPallete.borderColor,
-                dashPattern: const [10, 4],
-                radius: const Radius.circular(10),
-                borderType: BorderType.RRect,
-                strokeCap: StrokeCap.round,
-                child: Container(
-                  height: 150,
-                  width: double.infinity,
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.folder_open,
-                        size: 40,
-                      ),
-                      SizedBox(height: 15),
-                      Text(
-                        'Select your image',
-                        style: TextStyle(
-                          fontSize: 15,
+              GestureDetector(
+                onTap: () {
+                  selectImage();
+                },
+                child: DottedBorder(
+                  color: AppPallete.borderColor,
+                  dashPattern: const [10, 4],
+                  radius: const Radius.circular(10),
+                  borderType: BorderType.RRect,
+                  strokeCap: StrokeCap.round,
+                  child: Container(
+                    height: 150,
+                    width: double.infinity,
+                    child: const Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.folder_open,
+                          size: 40,
                         ),
-                      ),
-                    ],
+                        SizedBox(height: 15),
+                        Text(
+                          'Select your image',
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -83,14 +100,25 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
                           padding: const EdgeInsets.all(5.0),
                           child: GestureDetector(
                             onTap: () {
-                              selectedTopics.add(e);
+                              if (selectedTopics.contains(e)) {
+                                selectedTopics.remove(e);
+                              } else {
+                                selectedTopics.add(e);
+                              }
                               setState(() {});
                             },
                             child: Chip(
                               label: Text(e),
-                              side: const BorderSide(
-                                color: AppPallete.borderColor,
-                              ),
+                              color: selectedTopics.contains(e)
+                                  ? const MaterialStatePropertyAll(
+                                      AppPallete.gradient1,
+                                    )
+                                  : null,
+                              side: selectedTopics.contains(e)
+                                  ? null
+                                  : const BorderSide(
+                                      color: AppPallete.borderColor,
+                                    ),
                             ),
                           ),
                         ),
