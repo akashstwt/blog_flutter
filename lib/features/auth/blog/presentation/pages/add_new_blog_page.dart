@@ -22,7 +22,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
   File? image;
 
   void selectImage() async {
-    final pickedImage = await pickImage();
+    final pickedImage = await pickImage(context);
     if (pickedImage != null) {
       setState(() {
         image = pickedImage;
@@ -56,7 +56,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
               image != null
                   ? GestureDetector(
                       onTap: () {
-                        selectImage;
+                        selectImage();
                       },
                       child: SizedBox(
                         width: double.infinity,
