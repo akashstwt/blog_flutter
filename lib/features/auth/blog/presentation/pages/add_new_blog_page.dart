@@ -56,7 +56,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
               image != null
                   ? GestureDetector(
                       onTap: () {
-                        selectImage();
+                        selectImage;
                       },
                       child: SizedBox(
                         width: double.infinity,
