@@ -6,7 +6,7 @@
 //   final ImagePicker picker = ImagePicker();
 //   File? selectedImage;
 
-//   // Function to show the dialog for choosing the image source
+//   // Show dialog to choose the image source
 //   await showDialog(
 //     context: context,
 //     builder: (BuildContext context) {
@@ -16,16 +16,12 @@
 //           mainAxisSize: MainAxisSize.min,
 //           children: [
 //             ListTile(
-//               leading: const Icon(
-//                 Icons.photo_library,
-//               ),
+//               leading: const Icon(Icons.photo_library),
 //               title: const Text('Gallery'),
 //               onTap: () async {
-//                 Navigator.pop(
-//                     context); // Close the dialog before picking the image
-//                 final XFile? xFile = await picker.pickImage(
-//                   source: ImageSource.gallery,
-//                 );
+//                 Navigator.pop(context); // Close the dialog
+//                 final XFile? xFile =
+//                     await picker.pickImage(source: ImageSource.gallery);
 //                 if (xFile != null) {
 //                   selectedImage = File(xFile.path);
 //                 }
@@ -35,11 +31,9 @@
 //               leading: const Icon(Icons.camera_alt),
 //               title: const Text('Camera'),
 //               onTap: () async {
-//                 Navigator.pop(
-//                     context); // Close the dialog before picking the image
-//                 final XFile? xFile = await picker.pickImage(
-//                   source: ImageSource.camera,
-//                 );
+//                 Navigator.pop(context); // Close the dialog
+//                 final XFile? xFile =
+//                     await picker.pickImage(source: ImageSource.camera);
 //                 if (xFile != null) {
 //                   selectedImage = File(xFile.path);
 //                 }

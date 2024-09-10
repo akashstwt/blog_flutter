@@ -16,7 +16,7 @@ class AddNewBlogPage extends StatefulWidget {
 }
 
 class _AddNewBlogPageState extends State<AddNewBlogPage> {
-  final titileController = TextEditingController();
+  final titleController = TextEditingController();
   final contentController = TextEditingController();
   List<String> selectedTopics = [];
   File? image;
@@ -32,7 +32,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
 
   @override
   void dispose() {
-    titileController.dispose();
+    titleController.dispose();
     contentController.dispose();
     super.dispose();
   }
@@ -145,7 +145,7 @@ class _AddNewBlogPageState extends State<AddNewBlogPage> {
               ),
               const SizedBox(height: 10),
               BlogEditor(
-                controller: titileController,
+                controller: titleController,
                 hintText: 'Blog title',
               ),
               const SizedBox(height: 10),
