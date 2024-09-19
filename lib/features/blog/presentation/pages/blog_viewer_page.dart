@@ -20,52 +20,55 @@ class BlogViewerPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Scrollbar(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  blog.title,
-                  style: const TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    blog.title,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
+                ],
+              ),
+              const SizedBox(height: 20),
+              Text(
+                'By ${blog.posterName}',
+                style: const TextStyle(
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
                 ),
-                const SizedBox(height: 20),
-                Text(
-                  'By ${blog.posterName}',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
+              ),
+              const SizedBox(height: 5),
+              Text(
+                '${formatDateBydMMMYYYY(blog.updatedAt)} . ${calculateReadingTime(blog.content)} Min',
+                style: const TextStyle(
+                  color: AppPallete.greyColor,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
                 ),
-                const SizedBox(height: 5),
-                Text(
-                  '${formatDateBydMMMYYYY(blog.updatedAt)} . ${calculateReadingTime(blog.content)} Min',
-                  style: const TextStyle(
-                    color: AppPallete.greyColor,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                  ),
+              ),
+              const SizedBox(height: 20),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(blog.imageUrl),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                blog.content,
+                style: const TextStyle(
+                  fontSize: 16,
+                  height: 1.5,
                 ),
-                const SizedBox(height: 20),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(15),
-                  child: Image.network(blog.imageUrl),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  blog.content,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    height: 1.5,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
