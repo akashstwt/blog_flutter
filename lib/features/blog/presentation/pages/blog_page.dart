@@ -1,10 +1,10 @@
 import 'package:blog_app/core/common/widgets/loader.dart';
 import 'package:blog_app/core/theme/app_pallete.dart';
 import 'package:blog_app/core/utils/show_snackbar.dart';
+import 'package:blog_app/features/auth/presentation/pages/login_page.dart';
 import 'package:blog_app/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:blog_app/features/blog/presentation/pages/add_new_blog_page.dart';
 import 'package:blog_app/features/blog/presentation/widgets/blog_card.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -33,13 +33,43 @@ class _BlogPageState extends State<BlogPage> {
           child: Text('Blog App'),
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(context, AddNewBlogPage.route());
+          DropdownButton<String>(
+            borderRadius: BorderRadius.circular(50),
+            icon: const Icon(Icons.more_vert), // The trigger icon
+            underline: const SizedBox(), // Remove the underline
+            items: const [
+              DropdownMenuItem(
+                value: 'add',
+                child: Center(
+                  child: Icon(Icons.add, size: 24),
+                ),
+              ),
+              DropdownMenuItem(
+                value: 'logout',
+                child: Center(
+                  child: Icon(Icons.logout, size: 24),
+                ),
+              ),
+            ],
+            onChanged: (value) {
+              if (value == 'add') {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const AddNewBlogPage(),
+                  ),
+                );
+              } else if (value == 'logout') {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LogInPage(),
+                  ),
+                  (route) => false,
+                );
+              }
             },
-            icon: const Icon(
-              CupertinoIcons.add_circled,
-            ),
+            isDense: true, // Reduces the dropdown size
           ),
         ],
       ),
