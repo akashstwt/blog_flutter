@@ -34,7 +34,7 @@ class _BlogPageState extends State<BlogPage> {
         ),
         actions: [
           DropdownButton<String>(
-            borderRadius: BorderRadius.circular(50),
+            borderRadius: BorderRadius.circular(20),
             icon: const Icon(Icons.more_vert), // The trigger icon
             underline: const SizedBox(), // Remove the underline
             items: const [
