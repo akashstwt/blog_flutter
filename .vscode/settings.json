@@ -1,4 +1,4 @@
 {
     "java.configuration.updateBuildConfiguration": "interactive",
-    "files.autoSave": "off"
+    "files.autoSave": "afterDelay"
 }
